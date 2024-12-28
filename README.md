@@ -1,7 +1,5 @@
 # Vegetable Classification & Detection :
 
-![VC](https://github.com/C-Logesh-Perumal-29/Vegetable_Classification_And_Detection/assets/125385633/ee6d30ec-e92f-475d-a694-6b65ec296971)
-
 ## Overview
 
 Vegetable Classification &amp; Detection, a web-based tool, leverages Streamlit, TensorFlow, and OpenCV. It employs CNN and YOLO models to classify and detect vegetables from images and live feeds, benefiting agriculture and food processing with accurate identification &amp; detection tasks.
@@ -55,10 +53,6 @@ Vegetable Classification &amp; Detection, a web-based tool, leverages Streamlit,
   	•	`streamlit run app.py`
   	
 4.	Visit http://localhost:8501 in your web browser to interact with the vegetable classification application.
-
-## Functionality Spotlight
-
-  ![VC Pro](https://github.com/C-Logesh-Perumal-29/Vegetable_Classification_And_Detection/assets/125385633/35208fdc-8981-4945-9852-3da162688786)
 
   ## Credits
 
