@@ -3,3 +3,4 @@ matplotlib
 pillow
 tensorflow
 opencv-python-headless
+cvzone
