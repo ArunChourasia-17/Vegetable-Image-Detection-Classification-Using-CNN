@@ -53,7 +53,7 @@ title_html = f'<h1 style="color:#219ebc; text-align:center;font-family:Edwardian
 st.markdown(title_html, unsafe_allow_html=True)
 
 # Load the image using PIL 
-image_path = "C:/Users/lenovo/Downloads/Vegetable_Classification_And_Detection/CNN Architecture.jpg"
+image_path =  "C:\\Users\\lenovo\\Downloads\\Vegetable_Classification_And_Detection\\CNN Architecture.jpg
 image = Image.open(image_path) 
 
 # Display the image with Streamlit 
