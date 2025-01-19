@@ -1,7 +1,7 @@
 streamlit==1.41.1
 matplotlib==3.10.0
 pillow==8.4.*
-tensorflow-cpu==2.3.0  # Older stable version
+tensorflow-cpu==2.3.0  # Compatible older version
 opencv-python-headless==4.5.3.56
 cvzone==1.5.3
 ultralytics==8.3.63
