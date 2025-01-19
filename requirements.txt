@@ -1,7 +1,7 @@
-streamlit
-matplotlib
-pillow
-tensorflow==2.10.0
+streamlit==1.41.1
+matplotlib==3.10.0
+pillow==11.1.0
+tensorflow==2.8.0
 opencv-python-headless==4.5.3.56
-cvzone
-ultralytics
+cvzone==1.5.3
+ultralytics==8.3.63
