@@ -15,7 +15,7 @@ from ultralytics import YOLO
 
 # Setting Icon Image :
 img = Image.open("Icon.png")
-st.set_page_config(page_title="Vegetable Classification & Detection", page_icon=img, layout="wide")
+st.set_page_config(page_title="Vegetable Image Detection & Classification Using CNN", page_icon=img, layout="wide")
 
 # Hide Menu_Bar & Footer :
 hide_menu_style = """
@@ -52,6 +52,13 @@ st.markdown(Background_image, unsafe_allow_html=True)
 title_html = f'<h1 style="color:#219ebc; text-align:center;font-family:Edwardian Script ITC;font-size:96px;">Vegetable Classification & Detection</h1>'
 st.markdown(title_html, unsafe_allow_html=True)
 
+# Load the image using PIL 
+image_path = "C:\\Users\\lenovo\\Downloads\\Vegetable_Classification_And_Detection\\CNN Architecture.jpg" 
+image = Image.open(image_path) 
+
+# Display the image with Streamlit 
+st.image(image, use_container_width=True)
+
 # Creating Columns for Audio and Image :
 col1, col2 = st.columns([1, 4])
 with col1:
@@ -63,27 +70,35 @@ with col1:
         st.audio("VC.mp3")
 with col2:
     st.markdown("""
-                <marquee width="100%" direction="left" height="250px" scrollamount="6">
-                <img src="https://img.freepik.com/free-photo/top-view-ripe-fresh-tomatoes-with-water-drops-black-background_141793-3432.jpg?size=626&ext=jpg&ga=GA1.1.2087154549.1663432512&semt=ais" alt="VC Image 1">
-                <img src="https://img.freepik.com/free-photo/corn-texture_1308-4992.jpg?size=626&ext=jpg&ga=GA1.1.2087154549.1663432512&semt=sph" alt="VC Image 2">
-                <img src="https://img.freepik.com/free-photo/picture-vegetables-table_1340-24016.jpg?size=626&ext=jpg&ga=GA1.1.2087154549.1663432512&semt=sph" alt="VC Image 3">
+                <marquee width="100%" direction="left" scrollamount="6">
+                <img src="https://th.bing.com/th/id/OIP.CQSH56oBGHTHZp3rhT1K6wHaE8?pid=ImgDet&w=200&h=200&c=7&dpr=1.5" alt="VC Image 1">
+                <img src="https://th.bing.com/th/id/OIP.r36GrsYEAfYo7Rq2Y-yDUQHaHa?pid=ImgDet&w=200&h=200&c=7&dpr=1.5" alt="VC Image 2">
+                <img src="https://th.bing.com/th/id/OIP.ufdlWnNT41uyoRckj5FB_wHaE7?pid=ImgDet&w=200&h=200&c=7&dpr=1.5" alt="VC Image 3">
+                <img src="https://th.bing.com/th/id/OIP.WSasQlY5xSx_fRFPDRKfPQHaE7?pid=ImgDet&w=200&h=200&c=7&dpr=1.5" alt="VC Image 4">
+                <img src="https://th.bing.com/th/id/OIP.nUHgV9LcaPmHD7jUECGDlgHaE2?pid=ImgDet&w=200&h=200&c=7&dpr=1.5" alt="VC Image 5">
                 </marquee>
                 """, unsafe_allow_html=True)
 
 # Marquee Tag - About VC :
 st.markdown("""
     <marquee width="100%" direction="left" height="100px" scrollamount="6" style="color:white;font-family:Maiandra GD;">
-    Disclaimer : * Vegetable classification is a crucial process in Agriculture and Food Processing. * Supervised Learning technique is used to train the model. * Convolutional Neural Network (CNN) is a deep learning technology that is mainly used in Image Recognition and Classification tasks. * Image Classification is the process of categorizing an image into a predefined classes based on the tasks. * The model will learn based on the pixels and the model will recognize the pattern and extract the feature and training with the predefined classes/labels. * Vegetables Detection employs the YOLO (You Only Look Once) model for object detection, which identifies vegetables in the live feed with bounding boxes and labels.
+    🚀 Disclaimer : 
+            🌟 Vegetable classification is a crucial process in Agriculture and Food Processing. 
+            🌟 Supervised Learning technique is used to train the model. 
+            🌟 Convolutional Neural Network (CNN) is a deep learning technology that is mainly used in Image Recognition and Classification tasks. 
+            🌟 Image Classification is the process of categorizing an image into a predefined classes based on the tasks. 
+            🌟 The model will learn based on the pixels and the model will recognize the pattern and extract the feature and training with the predefined classes/labels. 
+            🌟 Vegetables Detection employs the YOLO (You Only Look Once) model for object detection, which identifies vegetables in the live feed with bounding boxes and labels.
     </marquee>
 """, unsafe_allow_html=True)
 
 # Define vegetable names and class map
-vegetable_names = ['Bean', 'Bitter_Gourd', 'Bottle_Gourd', 'Brinjal', 'Broccoli', 'Cabbage', 'Capsicum', 'Carrot',
-                   'Cauliflower', 'Cucumber', 'Papaya', 'Potato', 'Pumpkin', 'Radish', 'Tomato']
+vegetable_names = ['Bean', 'Bitter_Gourd', 'Bottle_Gourd', 'Brinjal', 'Broccoli', 'Cabbage', 'Capsicum',
+                   'Cauliflower', 'Cucumber', 'Potato', 'Radish', 'Tomato']
 class_map = {i: veg for i, veg in enumerate(vegetable_names)}
 
 # Load the model
-model = load_model('Vegetables_Recog_Model.h5')
+model = load_model('C:\\Users\\lenovo\\Downloads\\Vegetable_Classification_And_Detection\\Save_Model\\my_model.keras')
 # Define the function to generate predictions and plot the image
 def generate_predictions(test_image_path, actual_label):
     # Load and preprocess the image
@@ -126,8 +141,8 @@ if Options == "Vegetable Classification":
             result = generate_predictions(image_path, actual_label='Unknown')
             st.markdown(result)
 
-    with col_2:
-        captured_image = st.camera_input("Capture image", help="This is just a basic example")
+    with col_2:  
+        captured_image = st.camera_input("Capture an image", help="This is just a basic example")
         if captured_image is not None:
             capture_folder = "capture" 
             os.makedirs(capture_folder, exist_ok=True) # Ensure the folder exists 
@@ -162,7 +177,8 @@ elif Options == "Vegetable Detection":
     model = YOLO("best.pt")
 
     # Define class names
-    classNames = ['Bean','Bitter_Gourd','Bottle_Gourd','Brinjal','Broccoli','Cabbage','Capsicum','Carrot','Cauliflower','Cucumber','Papaya','Potato','Pumpkin','Radish','Tomato']
+    classNames = ['Bean', 'Bitter_Gourd', 'Bottle_Gourd', 'Brinjal', 'Broccoli', 'Cabbage', 'Capsicum',
+                   'Cauliflower', 'Cucumber', 'Potato', 'Radish', 'Tomato']
 
     # Webcam capture function
     def capture_image(cap, is_detection_started):
@@ -207,3 +223,14 @@ elif Options == "Vegetable Detection":
                 stframe.image(frame, channels="RGB", use_container_width=True)
 
         cap.release()
+
+#Define your footer content
+footer_text = """ <p><br>< Final Year Project Developed By Group No. - 16 /> <br> Under the guidance of Mr. Tapas Paul <br> (Assistant Professor) <br> Dept. Of Information Technology <br> Asansol Engineering College <br> Asansol, West Bengal, India <br> © 2025 . All Rights Reserved.</p> """
+
+# Create a container for the footer
+footer = st.container()
+
+# Add footer content to the container
+with footer:
+    st.markdown(f"<div style='text-align: center; color: gray; margin-top: 20px'>{footer_text}</div>", unsafe_allow_html=True)
+
