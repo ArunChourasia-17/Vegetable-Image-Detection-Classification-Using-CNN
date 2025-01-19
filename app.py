@@ -49,7 +49,7 @@ background-color: rgba(0,0,0,0);
 """
 st.markdown(Background_image, unsafe_allow_html=True)
 
-title_html = f'<h1 style="color:#219ebc; text-align:center;font-family:Edwardian Script ITC;font-size:96px;">Vegetable Classification & Detection</h1>'
+title_html = f'<h1 style="color:#219ebc; text-align:center;font-family:Edwardian Script ITC;font-size:89px;">Vegetable Classification & Detection</h1>'
 st.markdown(title_html, unsafe_allow_html=True)
 
 # Load the image using PIL 
