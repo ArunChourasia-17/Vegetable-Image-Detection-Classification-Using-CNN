@@ -1,0 +1,25 @@
+name: Deploy Streamlit App
+
+on: [push]
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+    - name: Checkout repository
+      uses: actions/checkout@v2
+
+    - name: Set up Python
+      uses: actions/setup-python@v2
+      with:
+        python-version: '3.10'  # Specify Python 3.10
+
+    - name: Clear pip cache
+      run: python -m pip cache purge
+
+    - name: Install dependencies
+      run: pip install -r requirements.txt
+
+    - name: Deploy to Streamlit
+      run: streamlit run app.py
