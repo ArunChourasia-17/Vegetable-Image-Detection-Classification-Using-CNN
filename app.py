@@ -154,7 +154,7 @@ if Options == "Vegetable Classification":
             st.image(image, caption='Captured Image', use_container_width=True)
             result = generate_predictions(image_path, actual_label='Unknown')
             st.markdown(result)
-
+            
 elif Options == "Vegetable Detection":
     
     # Function to perform object detection and draw bounding boxes
@@ -163,14 +163,14 @@ elif Options == "Vegetable Detection":
         for r in results:
             boxes = r.boxes
             for box in boxes:
-                x1, y1, x2, y2 = map(int, box.xyxy[0]) # Convert coordinates to integers
+                x1, y1, x2, y2 = map(int, box.xyxy[0])  # Convert coordinates to integers
                 x1, y1, x2, y2 = max(0, x1), max(0, y1), max(0, x2), max(0, y2)  # Ensure non-negative coordinates
-                cv2.rectangle(image, (x1, y1), (x2, y2), (255, 0, 255), thickness=3) # Specify thickness explicitly
+                cv2.rectangle(image, (x1, y1), (x2, y2), (255, 0, 255), thickness=3)  # Specify thickness explicitly
                 w, h = x2 - x1, y2 - y1
                 cvzone.cornerRect(image, (x1, y1, w, h))
                 conf = math.ceil((box.conf[0] * 100)) / 100
                 cls = int(box.cls[0])
-                cvzone.putTextRect(image, f'{classNames[cls]} {conf}', (max(1, x1), max(0, y1))) # Adjusted y coordinate
+                cvzone.putTextRect(image, f'{classNames[cls]} {conf}', (max(1, x1), max(1, y1)))  # Adjusted coordinates
         return image
 
     # Load YOLO model
@@ -178,7 +178,7 @@ elif Options == "Vegetable Detection":
 
     # Define class names
     classNames = ['Bean', 'Bitter_Gourd', 'Bottle_Gourd', 'Brinjal', 'Broccoli', 'Cabbage', 'Capsicum',
-                   'Cauliflower', 'Cucumber', 'Potato', 'Radish', 'Tomato']
+                  'Cauliflower', 'Cucumber', 'Potato', 'Radish', 'Tomato']
 
     # Webcam capture function
     def capture_image(cap, is_detection_started):
@@ -192,45 +192,42 @@ elif Options == "Vegetable Detection":
             yield frame
 
     # Main Streamlit code
-    if __name__ == "__main__":
-        cap = cv2.VideoCapture(0)
-        cap.set(3, 1500)
-        cap.set(4, 720)
+    cap = cv2.VideoCapture(0)
+    cap.set(3, 1500)
+    cap.set(4, 720)
 
+    is_detection_started = False
+    
+    col1, col2, col3, col4 = st.columns(4)
+    
+    with col1:
+        start_button = st.button("Start")
+    with col2:
+        stop_button = st.button("Stop")
+
+    if start_button:
+        is_detection_started = True
+
+    if stop_button:
         is_detection_started = False
-        
-        col1, col2, col3, col4 = st.columns(4)
-        
-        with col1:
-            start_button = st.button("Start")
-        with col2:
-            stop_button = st.button("Stop")
 
-        if start_button:
-            is_detection_started = True
+    while is_detection_started:
+        frames = capture_image(cap, is_detection_started)
+        stframe = st.empty()
 
-        if stop_button:
-            is_detection_started = False
+        for frame in frames:
+            stframe.image(frame, channels="RGB", use_container_width=True)
 
-        if is_detection_started:
-            frames = capture_image(cap, is_detection_started)
-            frame = next(frames)
+            # Add a small delay to prevent Streamlit update issues
+            time.sleep(0.1)
 
-            stframe = st.empty()
-            stframe.image(frame, channels="RGB")
+    cap.release()
 
-            for frame in frames:
-                stframe.image(frame, channels="RGB", use_container_width=True)
-
-        cap.release()
-
-#Define your footer content
-footer_text = """ <p><br>< Final Year Project Developed By Group No. - 16 /> <br> Under the guidance of Mr. Tapas Paul <br> (Assistant Professor) <br> Dept. Of Information Technology <br> Asansol Engineering College <br> Asansol, West Bengal, India <br> © 2025 . All Rights Reserved.</p> """
+# Define your footer content
+footer_text = """ <p>< Final Year Project Developed By Group No. - 16 /> <br> Under the guidance of Mr. Tapas Paul <br> (Assistant Professor) <br> Dept. Of Information Technology <br> Asansol Engineering College <br> Asansol, West Bengal, India <br> © 2025. All Rights Reserved.</p> """
 
 # Create a container for the footer
 footer = st.container()
 
-# Add footer content to the container
 with footer:
-    st.markdown(f"<div style='text-align: center; color: gray; margin-top: 20px'>{footer_text}</div>", unsafe_allow_html=True)
-
+    st.markdown(f"<div style='text-align: center; color: gray;'>{footer_text}</div>", unsafe_allow_html=True)
