@@ -11,15 +11,16 @@ jobs:
       uses: actions/checkout@v2
 
     - name: Set up Python
-      uses: actions/setup-python@v2
+      uses: actions/setup-python@v2 
       with:
-        python-version: '3.10'  # Specify Python 3.10
+        python-version: '3.10'  # Confirm Python 3.10[_{{{CITATION{{{_3{](https://bing.com/search?q=tensorflow+2.2.0+compatibility+with+Python+3.10)
 
     - name: Clear pip cache
-      run: python -m pip cache purge
+      run: python -m pip cache purge[_{{{CITATION{{{_1{Could not find version that satisfies the requirement tensorflow](https://bobbyhadz.com/blog/python-could-not-find-version-that-satisfies-the-requirement-tensorflow)
 
     - name: Install dependencies
-      run: pip install -r requirements.txt
+      run: pip install -r requirements.txt[_{{{CITATION{{{_1{Could not find version that satisfies the requirement tensorflow](https://bobbyhadz.com/blog/python-could-not-find-version-that-satisfies-the-requirement-tensorflow)
 
     - name: Deploy to Streamlit
-      run: streamlit run app.py
+      run: streamlit run app.py[_{{{CITATION{{{_1{Could not find version that satisfies the requirement tensorflow](https://bobbyhadz.com/blog/python-could-not-find-version-that-satisfies-the-requirement-tensorflow)
+
